@@ -7,11 +7,23 @@ import jakarta.persistence.*;
 public class Product {
     private String productType;
     private String[] concerns;
-    private String monthUsed;
+    private String productUrl;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "brand_id")
+    private long brandId;
+    @ManyToMany
+    @JoinColumn(name = "brand_id", insertable = false, updatable = false)
+    private Brand brand;
+
+    @Column(name = "rating_id")
+    private long ratingId;
+    @ManyToOne
+    @JoinColumn(name = "rating_id", insertable = false, updatable = false)
+    private Rating rating;
 
     public String getProductType() {
         return productType;
@@ -37,11 +49,27 @@ public class Product {
         this.concerns = concerns;
     }
 
-    public String getMonthUsed() {
-        return monthUsed;
+    public long getBrandId() {
+        return brandId;
     }
 
-    public void setMonthUsed(String monthUsed) {
-        this.monthUsed = monthUsed;
+    public void setBrandId(long brandId) {
+        this.brandId = brandId;
+    }
+
+    public long getRatingId() {
+        return ratingId;
+    }
+
+    public void setRatingId(long ratingId) {
+        this.ratingId = ratingId;
+    }
+
+    public String getProductUrl() {
+        return productUrl;
+    }
+
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
     }
 }
