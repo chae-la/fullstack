@@ -21,11 +21,11 @@ const CreateProduct = () => {
 
   const defaultProduct = {
     id: -1,
-    productName: " ",
-    brandName: " ",
-    concerns: [" "],
-    keyIngredients: [" "],
-    typeOfProduct: " ",
+    productName: "",
+    brandName: "",
+    concerns: [""],
+    keyIngredients: [""],
+    typeOfProduct: "",
     img: "",
     rating: 0,
   };

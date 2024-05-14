@@ -15,13 +15,13 @@ public class Product {
     private long id;
 
     @Column(name = "brand_id")
-    private long brandId;
+    private Brand brandId;
     @ManyToMany
     @JoinColumn(name = "brand_id", insertable = false, updatable = false)
     private Brand brand;
 
     @Column(name = "rating_id")
-    private long ratingId;
+    private Rating ratingId;
     @ManyToOne
     @JoinColumn(name = "rating_id", insertable = false, updatable = false)
     private Rating rating;
@@ -58,19 +58,19 @@ public class Product {
         this.keyIngredients = keyIngredients;
     }
 
-    public long getBrandId() {
+    public Long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(long brandId) {
+    public void setBrandId(Brand brandId) {
         this.brandId = brandId;
     }
 
-    public long getRatingId() {
+    public Long getRatingId() {
         return ratingId;
     }
 
-    public void setRatingId(long ratingId) {
+    public void setRatingId(Rating ratingId) {
         this.ratingId = ratingId;
     }
 

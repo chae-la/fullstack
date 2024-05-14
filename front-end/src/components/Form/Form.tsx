@@ -29,9 +29,10 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
       <h3 className="form__title">{formLabel}</h3>
       <form className="form__form" onSubmit={handleValidation}>
         <input
+        
           className="form__form form__form--input"
           type="text"
-          placeholder="Product Image"
+          placeholder="Product Image URL"
           value={product.img}
           onChange={(event) => handleInput("img", event.target.value)}
         />
