@@ -1,0 +1,13 @@
+@use "../../styles/reset" as *;
+@use "../../styles/colors" as *;
+
+.home{
+    padding: 2rem;
+    overflow-y: hidden;
+    &__title{
+        font-size: 5rem;
+    }
+    &__description{
+        margin-top: 1rem;
+    }
+}

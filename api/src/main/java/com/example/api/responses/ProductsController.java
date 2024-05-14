@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -42,17 +43,21 @@ public class ProductsController {
     }
 
     @GetMapping("/products/ascending")
-    public ResponseEntity<Product> getProductsRatingAscending(){
-        return ResponseEntity.status(HttpStatus.OK).body((Product) productsService.getProductsRatingAscending());
+    public ResponseEntity<List<Product>> getProductsRatingAscending() {
+        return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsRatingAscending());
     }
+
     @GetMapping("/products/descending")
-    public ResponseEntity<Product> getProductsRatingDescending(){
-        return ResponseEntity.status(HttpStatus.OK).body((Product) productsService.getProductsRatingDescending());
+    public ResponseEntity<List<Product>> getProductsRatingDescending() {
+        return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsRatingDescending());
     }
 
-        // product by productType
-        // product by brandName
+    @GetMapping("/products/{type}")
+    public ResponseEntity<List<Product>> getProductsByProductType(@PathVariable String type){
+        return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsByProductType(type));
+    }
 
+    // UPDATE
 
     @PutMapping("/product/{id}")
     public ResponseEntity<Product> updateGreeting(@RequestBody Product newProduct, @PathVariable long id){
@@ -60,6 +65,7 @@ public class ProductsController {
         return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 
+    //DELETE
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> deleteProductById(@PathVariable long id){
         productsService.deleteGreeting(id);

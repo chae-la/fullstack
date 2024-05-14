@@ -1,0 +1,14 @@
+@use "../../styles/reset" as *;
+@use "../../styles/colors" as *;
+
+.nav{
+background-color: $accent-color;
+padding: 0.7rem ;
+display: flex;
+justify-content: space-evenly;
+&__link{
+    text-decoration: none;
+    background-color: $accent-color;
+    color: $off-white-color;
+}
+}

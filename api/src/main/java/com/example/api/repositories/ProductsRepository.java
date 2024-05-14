@@ -20,5 +20,8 @@ public interface ProductsRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM skincare_products ORDER BY rating ASC", nativeQuery = true)
     List<Product> getAllProductsOrderByRatingAsc();
 
+    @Query(value = "SELECT * FROM skincare_products WHERE product_type = ?1", nativeQuery = true)
+    List<Product> getProductsByProductType(String productType);
+
     void deleteProduct(long id);
 }

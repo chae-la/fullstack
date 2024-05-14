@@ -29,7 +29,7 @@ public class ProductsService {
         Rating rating = ratingsRepository.findById(product.getRatingId()).orElseThrow(() -> new NotFoundException("Rating Not Found"));
 
         Product newProduct = productsRepository.save(product);
-        newProduct.setBrandId(brand);
+         newProduct.setBrandId(brand);
         newProduct.setRatingId(rating);
         return newProduct;
     }
@@ -55,7 +55,9 @@ public class ProductsService {
         return productsRepository.getAllProductsOrderByRatingDesc();
     }
 
-
+    public List<Product> getProductsByProductType(String productType){
+    return productsRepository.getProductsByProductType(productType);
+    }
 
 
 

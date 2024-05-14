@@ -1,0 +1,22 @@
+@use "../../styles/reset" as *;
+@use "../../styles/colors" as *;
+
+
+.product{
+    background-color: $white-color;
+    max-width: 15rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.625rem 1.25rem rgba($black-color, 0.25);
+    &__img{
+        width: 100%;
+        background-color: $white-color;
+    }
+    &__type, &__title, &__brand, &__rating, &__concerns, &__ingredient{
+        background-color:$white-color;
+        margin-top: 0.4rem;
+    }
+    &__ingredient--list{
+        margin-left: 1rem;
+    }
+    
+}

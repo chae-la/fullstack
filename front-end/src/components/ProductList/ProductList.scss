@@ -1,0 +1,7 @@
+@use "../../styles/reset" as *;
+@use "../../styles/colors" as *;
+
+.product-list{
+    display: flex;
+    justify-content: center;
+}

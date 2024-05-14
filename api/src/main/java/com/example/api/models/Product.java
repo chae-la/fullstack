@@ -8,6 +8,7 @@ public class Product {
     private String productType;
     private String[] concerns;
     private String productUrl;
+    private String[] keyIngredients;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +48,14 @@ public class Product {
 
     public void setConcerns(String[] concerns) {
         this.concerns = concerns;
+    }
+
+    public String[] getKeyIngredients() {
+        return keyIngredients;
+    }
+
+    public void setKeyIngredients(String[] keyIngredients) {
+        this.keyIngredients = keyIngredients;
     }
 
     public long getBrandId() {
