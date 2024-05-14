@@ -1,0 +1,21 @@
+@use "../../Styles/reset" as *;
+@use "../../Styles/color" as *;
+
+.radio-button {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  &__label {
+    margin-left: 5px;
+  }
+  &__input {
+    cursor: pointer;
+    width: 1rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .radio-button {
+    font-size: 1.2rem;
+    padding-bottom: 15px;
+  }
+}
