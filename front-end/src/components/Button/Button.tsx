@@ -2,14 +2,12 @@ import "./Button.scss"
 
 type ButtonProps ={
     label: string;
-    link: string;
 }
 
-const Button = ({label, link}: ButtonProps) => {
+const Button = ({label}: ButtonProps) => {
     return(
-            <a className="button" href={link}>{label}</a>
+            <button className="button" >{label}</button>
     )
-
 }
 
 export default Button;

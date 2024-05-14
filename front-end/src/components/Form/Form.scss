@@ -2,5 +2,11 @@
 @use "../../styles/colors" as *;
 
 .form{
-    
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    &__input{
+        margin-top: 0.8rem;
+        
+    }
 }

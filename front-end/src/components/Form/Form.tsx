@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
-import ProductType from "../../types/ProductType"
-import "./Form.scss"
+import ProductType from "../../types/ProductType";
+import "./Form.scss";
+import Button from "../Button/Button";
 
 type FormProps = {
     defaultProduct: ProductType;
@@ -11,7 +12,7 @@ type FormProps = {
 const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
     const [product, setProduct] = useState<ProductType>(defaultProduct);
 
-    const handleInput = (event: FormEvent<HTMLInputElement>, key: string) => 
+    const handleInput = (event: FormEvent<HTMLInputElement | HTMLSelectElement>, key: string) => 
         setProduct({ ...product, [key]: event.currentTarget.value }); 
 
     const handleValidation = (event: FormEvent<HTMLFormElement>) => {
@@ -52,12 +53,12 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
                     className="form__input"
                     type="text"
                     placeholder="Concerns"
-                    value={product.concerns}
+                    value={product.concerns.join(", ")}
                     onChange={event => handleInput(event, "concerns")}
                 />
                 <input
                     className="form__input"
-                    type="text"
+                    type="number"
                     placeholder="Rating"
                     value={product.rating}
                     onChange={event => handleInput(event, "rating")}
@@ -69,8 +70,25 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
                     value={product.keyIngredients}
                     onChange={event => handleInput(event, "keyIngredients")}
                 />
-                <button type="submit">Submit</button>
+                <select
+                    className="form__input"
+                    value={product.typeOfProduct}
+                    onChange={event => handleInput(event, "typeOfProduct")}
+                >
+                    <option value="">Select Product Type</option>
+                    <option value="Oil-based Cleanswer">Oil-Based Cleasner</option>
+                    <option value="Water-Based Cleanser">Water-Based Cleanser</option>
+                    <option value="Toner">Toner</option>
+                    <option value="Serum">Serum</option>
+                    <option value="Essence">Essence</option>
+                    <option value="Moisturiser">Moisturiser</option>
+                    <option value="Sunscreen">Sunscreen</option>
+                    <option value="Lip Balm">Lip Balm</option>
+                    <option value="Eye Cream">Eye Cream</option>
+                    <option value="Other">Other</option>
+                </select>
             </form>
+                <Button label="Submit" />
         </div>
     );
 }

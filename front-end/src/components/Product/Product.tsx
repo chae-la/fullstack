@@ -16,7 +16,7 @@ const Product = ({ product: productObject }: ProductProps) => {
     keyIngredients,
   } = productObject;
 
-  const formattedArr = concerns.join(", ");
+
 
   return (
     <div className="product">
@@ -25,7 +25,7 @@ const Product = ({ product: productObject }: ProductProps) => {
       <h2 className="product__title">{productName}</h2>
       <h3 className="product__brand">By {brandName}</h3>
       <h4 className="product__rating">{rating} / 10</h4>
-      <p className="product__concerns">Best for {formattedArr}</p>
+      <p className="product__concerns">Best for {concerns}</p>
       <p className="product__ingredient">Key Ingredients: </p>
       <ul className="product__ingredient product_ingredient--list">
         {keyIngredients.map((ingredient, index) => (
