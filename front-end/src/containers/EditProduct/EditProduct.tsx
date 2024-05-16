@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import ProductType from "../../types/ProductType";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
+import { useNavigate, useParams } from "react-router-dom";
 import Form from "../../components/Form/Form";
 
+const getFormProduct = (product: ProductType) => {
+  return {
+    id: product.id,
+    productName: product.productName,
+    brandName: product.brandName,
+    rating: product.rating,
+    keyIngredients: product.keyIngredients,
+    productType: product.productType,
+  };
+};
 
-const EditProduct = ({ productId }: { productId: ProductType }) => {
-  const [product, setProduct] = useState<ProductType | null>(null);
+const EditProduct = () => {
+  const [product, setProduct] = useState();
   const [showForm, setShowForm] = useState(false);
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  useEffect(() => {
-    getProductById(productId);
-  }, [productId]);
-
-  const getProductById = async (id: ProductType) => {
-    const result = await fetch(`http://localhost:8080/product/${id}`);
-    const productData = await result.json();
-    setProduct(productData);
-  };
-
-  const handleUpdate = async ( updateProduct: ProductType) => {
-    const result = await fetch(`http://localhost:8080/product/${updateProduct.id}`, {
+  const handleUpdate = async (updateProduct: ProductType) => {
+    const result = await fetch(`http://localhost:8080/product/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const EditProduct = ({ productId }: { productId: ProductType }) => {
   };
 
   const handleDelete = async () => {
-    const result = await fetch(`http://localhost:8080/product/${productId}`, {
+    const result = await fetch(`http://localhost:8080/product/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ const EditProduct = ({ productId }: { productId: ProductType }) => {
     });
     if (result.ok) {
       alert("Product Deleted");
-      navigate("/");
+      navigate("/products");
     } else {
       const message = await result.text();
       alert(message);
@@ -56,28 +56,38 @@ const EditProduct = ({ productId }: { productId: ProductType }) => {
 
   const handleShowForm = () => setShowForm(true);
 
+  const formProduct: ProductType | null = product
+    ? getFormProduct(product)
+    : null;
 
   return (
     <div className="edit">
       <h2 className="edit__title">Edit A Product</h2>
       <div className="edit__container">
-        <div className="edit__edit-button" onClick={handleShowForm}>
-          <Button label="Edit" />
-        </div>
-        <div className="edit__delete-button" onClick={handleDelete}>
-          <Button label="Delete" />
-        </div>
+        <button
+          className={
+            showForm ? "edit__edit-button" : "edit__edit-button--secondary"
+          }
+          onClick={handleShowForm}
+        >
+          Update
+        </button>
+
+        <button
+          className="edit__edit-button edit__edit-button--secondary"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
       </div>
-      {showForm && product && (
-        <>
-          <Form defaultProduct={product} handleSubmit={handleUpdate} formLabel="Update"/>
-          <Button label="Save" />
-        
-        </>
-      )}
+      {showForm && formProduct && <Form
+          defaultProduct={formProduct}
+          handleSubmit={handleUpdate}
+          formLabel="Update"
+        />
+      }
     </div>
   );
 };
 
 export default EditProduct;
-
