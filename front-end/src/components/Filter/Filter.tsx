@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RadioButton from "../RadioButton/RadioButton";
 import Button from "../Button/Button";
+import "./Filter.scss";
 
 type FilterProps = {
   handleChange: (filterType: string) => void;

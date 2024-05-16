@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductList from "../../components/ProductList/ProductList";
 import Filter from "../../components/Filter/Filter";
 import ProductType from "../../types/ProductType";
+import "./ViewProducts.scss";
 
 const ViewProducts = () => {
   const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
@@ -51,8 +52,11 @@ const ViewProducts = () => {
   return (
     <div className="view-products">
       <h3 className="view-products__title">Products I've used so far...</h3>
-      <Filter handleChange={handleFilterChange} />
+      <div className="view-products__container">
+        <Filter handleChange={handleFilterChange} />
       {loading ? <p>Loading...</p> : <ProductList products={filteredProducts} />}
+      </div>
+      
     </div>
   );
 };
