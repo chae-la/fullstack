@@ -22,11 +22,9 @@ const CreateProduct = () => {
   const defaultProduct = {
     id: -1,
     productName: "",
-    brand: {brandName: ""},
-    concerns: "",
+    brandName: "",
     keyIngredients: "",
     productType: "",
-    img: "",
     rating: 0,
   };
   return (

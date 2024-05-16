@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProductsRepository extends JpaRepository<Product, Long> {
-    List<Product> getAllByOrderByBrandBrandName();
-    List<Product> getAllProductsByBrandBrandNameIgnoreCase(String brandName);
+    List<Product> getAllByOrderByBrandName();
+    List<Product> getAllProductsByBrandNameIgnoreCase(String brandName);
 
 
     @Query(value = "Select * FROM skincare_products ORDER BY RAND() LIMIT 1", nativeQuery = true)

@@ -12,7 +12,7 @@ type FormProps = {
 const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
   const [product, setProduct] = useState<ProductType>(defaultProduct);
 
-  const handleInput = (key: string, value: string | string[] | number | { brandName : string}) =>
+  const handleInput = (key: string, value: string | string[] | number ) =>
     setProduct({ ...product, [key]: value });
 
   const handleValidation = (event: FormEvent<HTMLFormElement>) => {
@@ -29,14 +29,6 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
       <h3 className="form__title">{formLabel}</h3>
       <form className="form__form" onSubmit={handleValidation}>
         <input
-        
-          className="form__form form__form--input"
-          type="text"
-          placeholder="Product Image URL"
-          value={product.img}
-          onChange={(event) => handleInput("img", event.target.value)}
-        />
-        <input
           className="form__form form__form--input"
           type="text"
           placeholder="Product Name"
@@ -47,17 +39,8 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
           className="form__form form__form--input"
           type="text"
           placeholder="Brand Name"
-          value={product.brand.brandName}
-          onChange={(event) => handleInput("brand", { brandName: event.target.value})}
-        />
-        <input
-          className="form__form form__form--input"
-          type="text"
-          placeholder="Concerns"
-          value={product.concerns}
-          onChange={(event) =>
-            handleInput("concerns", event.target.value)
-          }
+          value={product.brandName}
+          onChange={(event) => handleInput("brandName", event.target.value)}
         />
         <input
           className="form__form form__form--input"

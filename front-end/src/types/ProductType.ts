@@ -1,10 +1,8 @@
 type ProductType = {
     id: number;
-    img: string;
     productName: string;
-    brand: {brandName: string};
+    brandName: string;
     rating: number;
-    concerns: string;
     productType: string;
     keyIngredients: string;
 }
