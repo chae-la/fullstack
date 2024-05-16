@@ -29,7 +29,6 @@ const CreateProduct = () => {
   };
   return (
     <div className="create-product">
-      <h2>Add a Product</h2>
       <Form
         handleSubmit={handleSubmit}
         defaultProduct={defaultProduct}

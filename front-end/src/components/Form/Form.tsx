@@ -74,7 +74,9 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
           <option value="Eye Cream">Eye Cream</option>
           <option value="Other">Other</option>
         </select>
+        <div className="form__button">
         <Button label="Submit"/>
+        </div>
       </form>
     </div>
   );

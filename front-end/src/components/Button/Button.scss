@@ -4,4 +4,13 @@
 .button{
     border-radius: 2rem;
     padding: 0.3rem 1rem;
+    max-width: 7rem;
+    text-align: center;
+    margin-right: auto;
+    transition: 0.3s ease-in-out;
+    &:hover{
+        background-color: $accent-color;
+        color: $white-color;
+        border: $accent-color;
+    }
 }

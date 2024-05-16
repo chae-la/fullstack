@@ -1,0 +1,85 @@
+@use "../../styles/reset" as *;
+@use "../../styles/colors" as *;
+
+.edit {
+  padding: 2rem;
+  text-align: center;
+  &__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  &__edit-button {
+    margin-top: 1rem;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: $accent-color;
+      border: none;
+      color: $white-color;
+    }
+  }
+  &__edit-button--secondary {
+    margin-top: 1rem;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: $accent-color;
+      border: none;
+      color: $white-color;
+    }
+  }
+  &__edit-button--tertiary {
+    margin-top: 1rem;
+    padding: 0.4rem 1rem;
+    border-radius: 1rem;
+    transition: 0.2s ease-in-out;
+    &:hover {
+      background-color: red;
+      border: none;
+      color: $white-color;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+    .edit{
+        padding: 2.5rem;
+        &__title{
+            font-size: 2rem;
+        }
+        &__edit-button, &__edit-button--secondary, &__edit-button--tertiary{
+            padding: 0.6rem 1.2rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .edit{
+        padding: 2.5rem;
+        &__title{
+            font-size: 3.5rem;
+        }
+        &__edit-button, &__edit-button--secondary, &__edit-button--tertiary{
+            padding: 1rem 2rem;
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+    }
+}
+
+@media screen and (min-width: 2560px) {
+    .edit{
+        padding: 5rem;
+        &__title{
+            font-size: 5rem;
+        }
+        &__edit-button, &__edit-button--secondary, &__edit-button--tertiary{
+            padding: 1.5rem 2.5rem;
+            font-size: 2rem;
+            margin-top: 5rem;
+        }
+    }
+}

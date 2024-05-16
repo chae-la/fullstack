@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ProductType from "../../types/ProductType";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../../components/Form/Form";
+import "./EditProduct.scss"
 
 const EditProduct = () => {
   const [product, setProduct] = useState<ProductType | null>(null);
@@ -33,6 +34,7 @@ const EditProduct = () => {
       alert("Product Information updated");
       const updated = await result.json();
       setProduct(updated);
+      navigate("/products");
     } else {
       const message = await result.text();
       alert(message);
@@ -74,7 +76,7 @@ const EditProduct = () => {
         </button>
 
         <button
-          className="edit__edit-button edit__edit-button--secondary"
+          className="edit__edit-button edit__edit-button--tertiary"
           onClick={handleDelete}
         >
           Delete
