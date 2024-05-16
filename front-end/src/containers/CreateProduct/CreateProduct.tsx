@@ -4,7 +4,7 @@ import ProductType from "../../types/ProductType";
 
 const CreateProduct = () => {
   const handleSubmit = async (product: ProductType) => {
-    const result = await fetch("http://localhost:8080/skincare_products", {
+    const result = await fetch("http://localhost:8080/product", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,10 +22,10 @@ const CreateProduct = () => {
   const defaultProduct = {
     id: -1,
     productName: "",
-    brandName: "",
-    concerns: [""],
-    keyIngredients: [""],
-    typeOfProduct: "",
+    brand: {brandName: ""},
+    concerns: "",
+    keyIngredients: "",
+    productType: "",
     img: "",
     rating: 0,
   };

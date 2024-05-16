@@ -8,11 +8,11 @@ return(
             id: 0,
             img: "",
             productName: "Lip Care Therapy",
-            brandName: "Vaseline",
+            brand:{ brandName: "Vaseline"},
             rating: 7,
-            concerns: ["Dry Lips", "Cracked Lips"],
-            typeOfProduct: "lip balm",
-            keyIngredients: ["niacinamide", "octocrylene"]
+            concerns: "Dry Lips, Cracked Lips",
+            productType: "lip balm",
+            keyIngredients: "niacinamide, octocrylene"
         }} />
     </div>
 )

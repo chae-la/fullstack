@@ -11,6 +11,13 @@ public class Brand implements OptionContract{
     private long id;
     private String brandName;
 
+    public Brand() {
+    }
+
+    public Brand(String brandName) {
+        this.brandName = brandName;
+    }
+
     public void setId(long id) {
         this.id = id;
     }

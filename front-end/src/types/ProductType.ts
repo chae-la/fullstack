@@ -2,11 +2,11 @@ type ProductType = {
     id: number;
     img: string;
     productName: string;
-    brandName: string;
+    brand: {brandName: string};
     rating: number;
-    concerns: string[];
-    typeOfProduct: string;
-    keyIngredients: string[];
+    concerns: string;
+    productType: string;
+    keyIngredients: string;
 }
 
 export default ProductType;

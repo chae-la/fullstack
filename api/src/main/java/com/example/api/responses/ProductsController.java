@@ -22,7 +22,7 @@ public class ProductsController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
     }
     // create
-    @PostMapping("/new-product")
+    @PostMapping("/product")
     public ResponseEntity<Product> createProduct(@RequestBody Product product){
         Product newProduct = productsService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
@@ -34,7 +34,7 @@ public class ProductsController {
         if(brandName != null){
             return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsByBrandName(brandName));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(productsService.getAllProducts());
+        return ResponseEntity.status(HttpStatus.OK).body(productsService.getAllProducts(brandName));
     }
 
     @GetMapping("/product/random")
@@ -53,8 +53,9 @@ public class ProductsController {
     }
 
     @GetMapping("/products/{type}")
-    public ResponseEntity<List<Product>> getProductsByProductType(@PathVariable String type){
-        return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsByProductType(type));
+    public ResponseEntity<List<Product>> getProductsByProductType(@PathVariable String type) {
+        List<Product> products = productsService.getProductsByProductType(type);
+        return ResponseEntity.status(HttpStatus.OK).body(products);
     }
 
     // UPDATE

@@ -3,28 +3,25 @@ package com.example.api.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "product_type")
+@Table(name = "products")
 public class Product {
     private String productType;
-    private String[] concerns;
+    private String productName;
+    private String concerns;
     private String productUrl;
-    private String[] keyIngredients;
+    private String keyIngredients;
+    private double rating;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "brand_id")
-    private Brand brandId;
-    @ManyToMany
-    @JoinColumn(name = "brand_id", insertable = false, updatable = false)
+    @Column(name = "brandId")
+    private long brandId;
+    @ManyToOne
+    @JoinColumn(name = "brandId", insertable = false, updatable = false)
     private Brand brand;
 
-    @Column(name = "rating_id")
-    private Rating ratingId;
-    @ManyToOne
-    @JoinColumn(name = "rating_id", insertable = false, updatable = false)
-    private Rating rating;
 
     public String getProductType() {
         return productType;
@@ -32,6 +29,30 @@ public class Product {
 
     public void setProductType(String productType) {
         this.productType = productType;
+    }
+
+    public String getConcerns() {
+        return concerns;
+    }
+
+    public void setConcerns(String concerns) {
+        this.concerns = concerns;
+    }
+
+    public String getProductUrl() {
+        return productUrl;
+    }
+
+    public void setProductUrl(String productUrl) {
+        this.productUrl = productUrl;
+    }
+
+    public String getKeyIngredients() {
+        return keyIngredients;
+    }
+
+    public void setKeyIngredients(String keyIngredients) {
+        this.keyIngredients = keyIngredients;
     }
 
     public long getId() {
@@ -42,43 +63,49 @@ public class Product {
         this.id = id;
     }
 
-    public String[] getConcerns() {
-        return concerns;
-    }
-
-    public void setConcerns(String[] concerns) {
-        this.concerns = concerns;
-    }
-
-    public String[] getKeyIngredients() {
-        return keyIngredients;
-    }
-
-    public void setKeyIngredients(String[] keyIngredients) {
-        this.keyIngredients = keyIngredients;
-    }
-
-    public Long getBrandId() {
+    public long getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(Brand brandId) {
+    public void setBrandId(long brandId) {
         this.brandId = brandId;
     }
 
-    public Long getRatingId() {
-        return ratingId;
+    public Brand getBrand() {
+        return brand;
     }
 
-    public void setRatingId(Rating ratingId) {
-        this.ratingId = ratingId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
-    public String getProductUrl() {
-        return productUrl;
+    public double getRating() {
+        return rating;
     }
 
-    public void setProductUrl(String productUrl) {
-        this.productUrl = productUrl;
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productType='" + productType + '\'' +
+                ", concerns='" + concerns + '\'' +
+                ", productUrl='" + productUrl + '\'' +
+                ", keyIngredients='" + keyIngredients + '\'' +
+                ", rating=" + rating +
+                ", id=" + id +
+                ", brandId=" + brandId +
+                ", brand=" + brand +
+                '}';
     }
 }

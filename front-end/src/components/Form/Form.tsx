@@ -12,7 +12,7 @@ type FormProps = {
 const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
   const [product, setProduct] = useState<ProductType>(defaultProduct);
 
-  const handleInput = (key: string, value: string | string[]) =>
+  const handleInput = (key: string, value: string | string[] | number | { brandName : string}) =>
     setProduct({ ...product, [key]: value });
 
   const handleValidation = (event: FormEvent<HTMLFormElement>) => {
@@ -47,16 +47,16 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
           className="form__form form__form--input"
           type="text"
           placeholder="Brand Name"
-          value={product.brandName}
-          onChange={(event) => handleInput("brandName", event.target.value)}
+          value={product.brand.brandName}
+          onChange={(event) => handleInput("brand", { brandName: event.target.value})}
         />
         <input
           className="form__form form__form--input"
           type="text"
           placeholder="Concerns"
-          value={product.concerns.join(", ")}
+          value={product.concerns}
           onChange={(event) =>
-            handleInput("concerns", event.target.value.split(","))
+            handleInput("concerns", event.target.value)
           }
         />
         <input
@@ -69,15 +69,15 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
         <textarea
           className="form__form form__form--input"
           placeholder="Key Ingredients"
-          value={product.keyIngredients.join("\n")} 
+          value={product.keyIngredients} 
           onChange={(event) =>
-            handleInput("keyIngredients", event.target.value.split("\n"))
+            handleInput("keyIngredients", event.target.value)
           }
         />
         <select
           className="form__form form__form--input"
-          value={product.typeOfProduct}
-          onChange={(event) => handleInput("typeOfProduct", event.target.value)}
+          value={product.productType}
+          onChange={(event) => handleInput("productType", event.target.value)}
         >
           <option value="">Select Product Type</option>
           <option value="Oil-based Cleanswer">Oil-Based Cleasner</option>

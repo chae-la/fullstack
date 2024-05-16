@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProductsRepository extends JpaRepository<Product, Long> {
-    List<Product> getAllOrderByBrandName();
-    List<Product> getProductsByBrandNameIgnoreCase(String brandName);
+    List<Product> getAllByOrderByBrandBrandName();
+    List<Product> getAllProductsByBrandBrandNameIgnoreCase(String brandName);
 
 
     @Query(value = "Select * FROM skincare_products ORDER BY RAND() LIMIT 1", nativeQuery = true)
@@ -23,5 +23,5 @@ public interface ProductsRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM skincare_products WHERE product_type = ?1", nativeQuery = true)
     List<Product> getProductsByProductType(String productType);
 
-    void deleteProduct(long id);
+    void deleteProductById(long id);
 }
