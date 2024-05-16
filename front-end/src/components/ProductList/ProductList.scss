@@ -2,6 +2,13 @@
 @use "../../styles/colors" as *;
 
 .product-list{
+    a{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    text-decoration: none;
+    color: $black-color
+    }
+    
 }

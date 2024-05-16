@@ -1,49 +1,60 @@
-import "./ViewProducts.scss";
+import { useEffect, useState } from "react";
 import ProductList from "../../components/ProductList/ProductList";
-import SearchBox from "../../components/SearchBox/SearchBox";
-import { FormEvent, useEffect, useState } from "react";
+import Filter from "../../components/Filter/Filter";
 import ProductType from "../../types/ProductType";
 
 const ViewProducts = () => {
-    const [searchInput, setSearchInput] = useState<string>("");
-    const [products, setProducts] = useState<ProductType[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+  const [selectedFilter, setSelectedFilter] = useState<string[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<ProductType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-    const handleSearchInput = (event: FormEvent<HTMLInputElement>) => {
-        const input = event.currentTarget.value.toLowerCase();
-        setSearchInput(input);
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const result = await fetch("http://localhost:8080/products");
+        if (!result.ok) {
+          throw new Error("Error Loading Products :( Try Again Later");
+        }
+        const productData = await result.json();
+        setProducts(productData);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error Loading products:", error);
+        setLoading(false);
+      }
     };
 
-    useEffect(() => {
-        const getProducts = async () => {
-            try {
-                const result = await fetch("http://localhost:8080/products");
-                if (!result.ok) {
-                    throw new Error("Error Loading Products :( Try Again Later");
-                }
-                const productData = await result.json();
-                setProducts(productData);
-                setLoading(false);
-            } catch (error) {
-                console.error("Error Loading products:", error);
-                setLoading(false);
-            }
-        };
+    getProducts();
+  }, []);
 
-        getProducts();
-    }, []);
+  useEffect(() => {
+    applyFilter();
+  }, [selectedFilter, products]);
 
-    return (
-        <div className="view-products">
-            <h3 className="view-products__title">Products I've used so far...</h3>
-            <SearchBox productName="Products" searchTerm={searchInput} handleInput={handleSearchInput} />
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <ProductList products={products} />
-            )}
-        </div>
-    );
+  const handleFilterChange = (filterType: string) => {
+    if (selectedFilter.includes(filterType)) {
+      setSelectedFilter(selectedFilter.filter((filter) => filter !== filterType));
+    } else {
+      setSelectedFilter([...selectedFilter, filterType]);
+    }
+  };
+
+  const applyFilter = () => {
+    let filtered = [...products];
+    selectedFilter.forEach((filter) => {
+      filtered = filtered.filter((product) => product.productType === filter);
+    });
+    setFilteredProducts(filtered);
+  };
+
+  return (
+    <div className="view-products">
+      <h3 className="view-products__title">Products I've used so far...</h3>
+      <Filter handleChange={handleFilterChange} />
+      {loading ? <p>Loading...</p> : <ProductList products={filteredProducts} />}
+    </div>
+  );
 };
 
 export default ViewProducts;
