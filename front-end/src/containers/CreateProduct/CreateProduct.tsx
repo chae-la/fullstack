@@ -1,8 +1,10 @@
 import "./CreateProduct.scss";
 import Form from "../../components/Form/Form";
 import ProductType from "../../types/ProductType";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const handleSubmit = async (product: ProductType) => {
     const result = await fetch("http://localhost:8080/product", {
       method: "POST",
@@ -13,6 +15,7 @@ const CreateProduct = () => {
     });
     if (result.ok) {
       alert("Product Created");
+      navigate("/products")
     } else {
       const message = await result.text();
       alert(message);

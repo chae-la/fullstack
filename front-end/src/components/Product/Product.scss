@@ -5,14 +5,25 @@
 .product{
     background-color: $white-color;
     width: 15rem;
+    height: 15rem;
     padding: 1.5rem;
     box-shadow: 0 0.625rem 1.25rem rgba($black-color, 0.25);
     border-radius: 1rem;
-    &__type, &__title, &__brand, &__rating, &__ingredient{
+    &__title, &__brand, &__rating, &__ingredient{
         background-color:$white-color;
         margin-top: 0.4rem;
     }
     &__ingredient--list{
         margin-left: 1rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .product{
+        width: 17rem;
+        height: 20rem;
+        &__type, &__title, &__brand, &__rating, &__ingredient{
+            font-size: 1.5rem;
+        }
     }
 }

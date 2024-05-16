@@ -4,7 +4,7 @@
 .button{
     border-radius: 2rem;
     padding: 0.3rem 1rem;
-    max-width: 7rem;
+    width: 7rem;
     text-align: center;
     margin-right: auto;
     transition: 0.3s ease-in-out;
@@ -12,5 +12,22 @@
         background-color: $accent-color;
         color: $white-color;
         border: $accent-color;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .button{
+        font-size: 1.2rem;
+        width: 9rem;
+        margin-top: 1.5rem;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .button{
+        padding: 0.8rem 1.3rem;
+        font-size: 1.5rem;
+        width: 13rem;
+        margin-top: 1.5rem;
     }
 }
