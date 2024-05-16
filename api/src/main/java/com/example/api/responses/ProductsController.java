@@ -2,14 +2,12 @@ package com.example.api.responses;
 
 import com.example.api.models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -35,6 +33,11 @@ public class ProductsController {
             return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductsByBrandName(brandName));
         }
         return ResponseEntity.status(HttpStatus.OK).body(productsService.getAllProducts(brandName));
+    }
+
+    @GetMapping("/product/{id}")
+    public ResponseEntity<Optional<Product>> getProductsById(@PathVariable long id){
+        return ResponseEntity.status(HttpStatus.OK).body(productsService.getProductById(id));
     }
 
     @GetMapping("/product/random")

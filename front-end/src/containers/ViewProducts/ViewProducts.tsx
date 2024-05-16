@@ -15,7 +15,7 @@ const ViewProducts = () => {
     };
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const getProducts = async () => {
             try {
                 const result = await fetch("http://localhost:8080/products");
                 if (!result.ok) {
@@ -30,7 +30,7 @@ const ViewProducts = () => {
             }
         };
 
-        fetchProducts();
+        getProducts();
     }, []);
 
     return (

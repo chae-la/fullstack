@@ -3,22 +3,23 @@ import ProductType from "../../types/ProductType";
 import { useNavigate, useParams } from "react-router-dom";
 import Form from "../../components/Form/Form";
 
-const getFormProduct = (product: ProductType) => {
-  return {
-    id: product.id,
-    productName: product.productName,
-    brandName: product.brandName,
-    rating: product.rating,
-    keyIngredients: product.keyIngredients,
-    productType: product.productType,
-  };
-};
-
 const EditProduct = () => {
-  const [product, setProduct] = useState();
-  const [showForm, setShowForm] = useState(false);
+  const [product, setProduct] = useState<ProductType | null>(null);
+  const [showForm, setShowForm] = useState<boolean>(false);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const getProductByID = async () => {
+    const result = await fetch(`http://localhost:8080/product/${id}`);
+    const productData = await result.json();
+    setProduct(productData);
+  };
+
+  useEffect(() => {
+    if (id) {
+      getProductByID();
+    }
+  }, [id]);
 
   const handleUpdate = async (updateProduct: ProductType) => {
     const result = await fetch(`http://localhost:8080/product/${id}`, {
@@ -54,11 +55,10 @@ const EditProduct = () => {
     }
   };
 
-  const handleShowForm = () => setShowForm(true);
+  const handleShowForm = () => setShowForm(!showForm);
 
-  const formProduct: ProductType | null = product
-    ? getFormProduct(product)
-    : null;
+  console.log(handleShowForm);
+  console.log(showForm);
 
   return (
     <div className="edit">
@@ -80,12 +80,13 @@ const EditProduct = () => {
           Delete
         </button>
       </div>
-      {showForm && formProduct && <Form
-          defaultProduct={formProduct}
+      {showForm && product && (
+        <Form
           handleSubmit={handleUpdate}
           formLabel="Update"
+          defaultProduct={product}
         />
-      }
+      )}
     </div>
   );
 };
