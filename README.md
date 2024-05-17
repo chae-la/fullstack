@@ -29,7 +29,7 @@ Keeping and maintaining a spreadsheet of skincare I've used over the years is ti
 
 ## Database Preview
 
-![An image of the webpage](/src/assets/images/webpage-screenshot.png "image of webpage in mobile view")
+![An image of the webpage]()
 
 ## Features
 
