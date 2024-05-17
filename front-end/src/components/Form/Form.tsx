@@ -62,7 +62,7 @@ const Form = ({ defaultProduct, formLabel, handleSubmit }: FormProps) => {
           value={product.productType}
           onChange={(event) => handleInput("productType", event.target.value)}
         >
-          <option value="">Select Product Type</option>
+          <option value="">==Select Product Type==</option>
           <option value="Oil-based Cleanser">Oil-Based Cleasner</option>
           <option value="Water-Based Cleanser">Water-Based Cleanser</option>
           <option value="Toner">Toner</option>

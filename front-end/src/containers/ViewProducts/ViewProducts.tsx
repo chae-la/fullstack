@@ -34,26 +34,31 @@ const ViewProducts = () => {
   }, [selectedFilter, products]);
 
   const handleFilterChange = (filterType: string) => {
-    if (selectedFilter.includes(filterType)) {
-      setSelectedFilter(selectedFilter.filter((filter) => filter !== filterType));
-    } else {
-      setSelectedFilter([...selectedFilter, filterType]);
-    }
+    setSelectedFilter((prevFilters) =>
+      prevFilters.includes(filterType)
+        ? prevFilters.filter((filter) => filter !== filterType)
+        : [...prevFilters, filterType]
+    );
   };
 
   const applyFilter = () => {
-    let filtered = [...products];
-    selectedFilter.forEach((filter) => {
-      filtered = filtered.filter((product) => product.productType === filter);
-    });
-    setFilteredProducts(filtered);
+    if (selectedFilter.length === 0) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter((product) =>
+        selectedFilter.includes(product.productType)
+      );
+      setFilteredProducts(filtered);
+    }
   };
+
 
   return (
     <div className="view-products">
       <h3 className="view-products__title">Products I've used so far...</h3>
       <div className="view-products__container">
         <Filter handleChange={handleFilterChange} />
+        <h3>Results: {filteredProducts.length}</h3>
       {loading ? <p>Loading...</p> : <ProductList products={filteredProducts} />}
       </div>
       
